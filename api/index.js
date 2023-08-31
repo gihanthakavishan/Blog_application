@@ -1,10 +1,10 @@
 const express= require ('express');
 const app = express();
-const app =require('cors');y
+const cors = require('cors');
 
 
-app.arguments(cors());
-app.arguments(express.json());
+app.use(cors());
+app.use(express.json());
 
 app.post('/register',(req,res)=> {
     const {username,password} = req.body;
@@ -13,4 +13,6 @@ app.post('/register',(req,res)=> {
 
 app.listen(4000, () => {
     console.log("connection successful");
-});
+}); 
+
+//mongodb+srv://blog:<1234>@cluster0.ivaexdy.mongodb.net/?retryWrites=true&w=majority
