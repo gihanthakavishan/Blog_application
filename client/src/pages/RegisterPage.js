@@ -5,7 +5,7 @@ export default function RegisterPage (){
     return (
         <form className="register">
             <h1>Register</h1>
-            <input type="text" placeholder="username" value={username}></input>
+            <input type="text" placeholder="username" value={username} onChange={ev =>setUsername(ev.target.value)}></input>
             <input type="password" placeholder="password" ></input>
             <button>Register</button> 
         </form>
