@@ -8,7 +8,6 @@ export default function RegisterPage (){
          method: 'POST',
          body:JSON.stringify({username,password}),
          headers: {'Content-Type':'application/json'},
-
      } )
     }
         return (
