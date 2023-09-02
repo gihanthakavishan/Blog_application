@@ -24,7 +24,9 @@ app.post('/register', async (req,res)=> {
    // res.json(userDoc);
 });
 
-app.post('/login', (req,res)=> {
+app.post('/login', async(req,res)=> {
+    const {username,password} = req.body;
+    const userDoc = await User.findOne({username});
     
 });
 
