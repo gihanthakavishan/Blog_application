@@ -4,7 +4,7 @@ const cors = require('cors');
 const mongoose = require("mongoose");
 const User = require('./models/User');
 const bcrypt = require('bcrypt');
-const salt = 'hgugtrgojbnmcbdsc7362xnyn453HJH';
+const salt = bcrypt.genSaltSync(10);
 app.use(cors());
 app.use(express.json());
 
@@ -24,6 +24,9 @@ app.post('/register', async (req,res)=> {
    // res.json(userDoc);
 });
 
+app.post('/login', (req,res)=> {
+    
+});
 
 app.listen(4000);
 
