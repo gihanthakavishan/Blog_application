@@ -11,8 +11,14 @@ mongoose.connect('mongodb+srv://blog:1234@cluster0.ivaexdy.mongodb.net/pin?retry
 
 app.post('/register', async (req,res)=> {
     const {username,password} = req.body;
-    const userDoc = await User.create({username,password});
-    res.json(userDoc);
+    try{
+        const userDoc = await User.create({username,password});
+        res.json(userDoc);
+    }catch(e){
+        res.status(400).json(e);
+    }
+    
+   // res.json(userDoc);
 });
 
 
