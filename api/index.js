@@ -3,7 +3,7 @@ const app = express();
 const cors = require('cors');
 const mongoose = require("mongoose");
 const User = require('./models/User');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const salt = bcrypt.genSaltSync(10);
@@ -12,6 +12,8 @@ const secret = 'jbjk;glkk4KJKI5fnuu4ye1pjt';
 
 app.use(cors());
 app.use(express.json());
+
+app.use(cors({credentials:true,origin:'http://localhost:3000'}));
 
 mongoose.connect('mongodb+srv://blog:1234@cluster0.ivaexdy.mongodb.net/pin?retryWrites=true&w=majority');
 
