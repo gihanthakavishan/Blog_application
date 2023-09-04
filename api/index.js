@@ -3,14 +3,13 @@ const app = express();
 const cors = require('cors');
 const mongoose = require("mongoose");
 const User = require('./models/User');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jbjk;glkk4KJKI5fnuu4ye1pjt';
 
 
-app.use(cors());
 app.use(express.json());
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
@@ -32,6 +31,7 @@ app.post('/register', async (req,res)=> {
 });
 
 app.post('/login', async(req,res)=> {
+    console.log('hi');
     const {username,password} = req.body;
     const userDoc = await User.findOne({username});
     const passOk =bcrypt.compareSync(password, userDoc.password);
@@ -39,6 +39,7 @@ app.post('/login', async(req,res)=> {
         //logged in
         jwt.sign({username,id:userDoc._id}, secret, {}, (err,token)=>{
            if(err) throw err;
+           console.log(token);
            res.cookie('token', token).json('ok');
         });  
         // res.json();

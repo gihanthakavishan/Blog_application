@@ -13,10 +13,11 @@ export default function LoginPage(){
             headers: {'Content-Type':'application/json'},
             credentials: 'include',
         });
+        console.log(response);
         if(response.ok){
            setRedirect(true);
         } else {
-            alert('wrong credentials');
+            alert('wrong credentials'); 
         }
     }
     if(redirect){
