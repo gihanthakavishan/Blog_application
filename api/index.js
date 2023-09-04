@@ -1,4 +1,4 @@
-// 
+//
 const express= require ('express');
 const app = express();
 const cors = require('cors');
@@ -57,6 +57,10 @@ app.post('/login', async (req, res) => {
         console.error(error);
         res.status(500).json('Internal server error');
     }
+});
+
+app.get('/profile',(req,res)=>{
+   res.json(req.cookies);
 });
 
 app.listen(4000);
