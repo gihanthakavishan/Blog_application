@@ -1,3 +1,4 @@
+// 
 const express= require ('express');
 const app = express();
 const cors = require('cors');
@@ -8,6 +9,7 @@ const jwt = require('jsonwebtoken');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jbjk;glkk4KJKI5fnuu4ye1pjt';
+
 
 
 app.use(express.json());
@@ -30,21 +32,30 @@ app.post('/register', async (req,res)=> {
    // res.json(userDoc);
 });
 
-app.post('/login', async(req,res)=> {
-    console.log('hi');
-    const {username,password} = req.body;
-    const userDoc = await User.findOne({username});
-    const passOk =bcrypt.compareSync(password, userDoc.password);
-    if(passOk){
-        //logged in
-        jwt.sign({username,id:userDoc._id}, secret, {}, (err,token)=>{
-           if(err) throw err;
-           console.log(token);
-           res.cookie('token', token).json('ok');
-        });  
-        // res.json();
-    } else {
-        res.status(400).json('wrong credentials');
+app.post('/login', async (req, res) => {
+    try {
+        console.log('hi');
+        const { username, password } = req.body;
+        const userDoc = await User.findOne({ username });
+
+        if (!userDoc) {
+            return res.status(400).json('User not found');
+        }
+
+        const passOk = bcrypt.compareSync(password, userDoc.password);
+
+        if (passOk) {
+            // Generate a JWT token
+            const token = jwt.sign({ username, id: userDoc._id }, secret);
+
+            // Send the token in a cookie
+            res.cookie('token', token).json('ok');
+        } else {
+            res.status(400).json('Wrong credentials');
+        }
+    } catch (error) {
+        console.error(error);
+        res.status(500).json('Internal server error');
     }
 });
 
