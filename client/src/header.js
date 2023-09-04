@@ -8,15 +8,25 @@ export default function Header(){
         credentials: 'include',
       }).then(response =>{
          response.json().then(userInfo =>{
-             
+             setUsername(userInfo.username);
          });
       });
     }, []);
     return (<header>
         <Link to="/" className="logo">Myblog</Link>
         <nav>
-         <Link to="/login">Login</Link>
-         <Link to="/register">Register</Link>
+            {username && (
+                <>
+                <Link to="/create">Create new post</Link>
+                <a>Logout</a>
+                </>
+            )}
+            {!username && (
+                <>
+                 <Link to="/login">Login</Link>
+                 <Link to="/register">Register</Link>
+                </>
+            )}
         </nav>
        </header>);
 }
