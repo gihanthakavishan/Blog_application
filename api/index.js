@@ -6,6 +6,7 @@ const mongoose = require("mongoose");
 const User = require('./models/User');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jbjk;glkk4KJKI5fnuu4ye1pjt';
@@ -15,7 +16,7 @@ const secret = 'jbjk;glkk4KJKI5fnuu4ye1pjt';
 app.use(express.json());
 
 app.use(cors({credentials:true,origin:'http://localhost:3000'}));
-
+app.use(cookieParser());
 mongoose.connect('mongodb+srv://blog:1234@cluster0.ivaexdy.mongodb.net/pin?retryWrites=true&w=majority');
 
 app.post('/register', async (req,res)=> {
