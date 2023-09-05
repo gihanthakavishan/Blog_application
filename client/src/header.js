@@ -9,6 +9,7 @@ export default function Header(){
       }).then(response =>{
          response.json().then(userInfo =>{
              setUsername(userInfo.username);
+             //alert(userInfo.username);
          });
       });
     }, []);
