@@ -16,14 +16,15 @@ import { UserContext } from "./userContext";
 // );
 
 export default function Header(){
-    const {setUserInfo, userInfo} = useContext(UserContext);
+    const [userInfo, setUserinfo] = useContext(UserContext);
     const [username, setUsername] = useState(null);
     useEffect(()=> {
       fetch('http://localhost:4000/profile',{
         credentials: 'include',
       }).then(response =>{
          response.json().then(userInfo =>{
-            setUserInfo(userInfo); 
+            console.log(userInfo)
+            setUserinfo(userInfo); 
              //setUsername(userInfo.username); 
          });
       });
@@ -34,7 +35,7 @@ export default function Header(){
         credentials: 'include',
         method: 'POST',
     });
-    setUserInfo(null);
+    setUserinfo(null);
     }
 
     const usersname = userInfo?.usersname;

@@ -69,6 +69,7 @@ app.post('/login', async (req, res) => {
 //    //res.json(req.cookies);
 // });
 app.get('/profile', (req, res) => {
+    console.log('******')
     const { token } = req.cookies;
 
     if (!token) {
