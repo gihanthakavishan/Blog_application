@@ -7,7 +7,8 @@ export default function CreatePost(){
     const[content,setContent] = useState('');
     const modules ={
         toolbar: [
-            ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
+            
+  ['bold', 'italic', 'underline', 'strike'],        // toggled buttons
   ['blockquote', 'code-block'],
 
   [{ 'header': 1 }, { 'header': 2 }],               // custom button values
@@ -22,16 +23,39 @@ export default function CreatePost(){
   [{ 'color': [] }, { 'background': [] }],          // dropdown with defaults from theme
   [{ 'font': [] }],
   [{ 'align': [] }],
+  ['link'],
+  ['image'],
 
   ['clean']                                         // remove formatting button
 ],
+    };
+    const formats = {
+        formats :[
+        'font-size',
+        'font-color',
+        'bold',
+        'italic',
+        'underline',
+        'strike',
+        'align',
+        'list',
+        'link',
+        'image',
+        'background',
+        'blockquote',
+        'code-block',
+        'header',
+        'script',
+        'indent',
+        
+      ],
     };
     return(
         <form>
            <input type="title" placeholder={'Title'}/>
            <input type="summary" placeholder={'Summary'}/>
            <input type="file"/>
-           <ReactQuill value={content}/>
+           <ReactQuill value={content} modules={modules} formats={formats}/>
            <button style={{marginTop:'5px'}}> Create post</button>
            </form>
     );
