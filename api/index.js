@@ -95,7 +95,10 @@ app.post('/logout',(req,res)=>{
 })
 
 app.post('/post', uploadMiddleware.single('file'),(req,res)=>{
+  const {originalname} = req.file;
+  const parts = originalname.split('.');
   res.json({files:req.file});
+
 });
 app.listen(4000);
 
