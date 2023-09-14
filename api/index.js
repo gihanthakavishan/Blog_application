@@ -9,6 +9,7 @@ const jwt = require('jsonwebtoken');
 const cookieParser = require('cookie-parser');
 const multer = require('multer');
 const uploadMiddleware = multer({dest: 'uploads/'});
+const fs = require('fs');
 
 const salt = bcrypt.genSaltSync(10);
 const secret = 'jbjk;glkk4KJKI5fnuu4ye1pjt';
@@ -97,7 +98,8 @@ app.post('/logout',(req,res)=>{
 app.post('/post', uploadMiddleware.single('file'),(req,res)=>{
   const {originalname} = req.file;
   const parts = originalname.split('.');
-  res.json({files:req.file});
+  const ext = parts[parts.length -1];
+  res.json({ext});
 
 });
 app.listen(4000);
