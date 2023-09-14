@@ -7,6 +7,7 @@ export default function CreatePost(){
            <input type="summary" placeholder={'Summary'}/>
            <input type="file"/>
            <ReactQuill/>
+           <button style={{marginTop:'5px'}}> Create post</button>
            </form>
     );
 }
