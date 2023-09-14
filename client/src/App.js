@@ -7,9 +7,10 @@ import Layout from './layout';
 import IndexPage from './pages/IndexPage';
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from './pages/RegisterPage';
+import { UserContextProvider } from './userContext';
 function App() {
   return (
-    <userContextProvider>
+    <UserContextProvider>
 
     
   <Routes>  
@@ -19,7 +20,7 @@ function App() {
            <Route path="/register" element={ <RegisterPage /> }/>
      </Route>
   </Routes>
-  </userContextProvider>
+  </UserContextProvider>
   );
 }
 
