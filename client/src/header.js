@@ -64,7 +64,7 @@ import { Link } from "react-router-dom";
 import { UserContext } from "./userContext";
 
 export default function Header() {
-  const [userInfo, setUserInfo] = useState(null); // Initialize with null or initial value
+  const [userInfo, setUserinfo] = useState(null); // Initialize with null or initial value
   const [username, setUsername] = useState(null);
 
   useEffect(() => {
@@ -73,7 +73,7 @@ export default function Header() {
     }).then(response => {
       response.json().then(userData => {
         console.log(userData);
-        setUserInfo(userData); // Update userInfo state
+        setUserinfo(userData); // Update userInfo state
         setUsername(userData.username);
       });
     });
@@ -84,7 +84,7 @@ export default function Header() {
       credentials: 'include',
       method: 'POST',
     });
-    setUserInfo(null); // Clear userInfo when logging out
+    setUserinfo(null); // Clear userInfo when logging out
   }
 
   const usersname = userInfo?.usersname;
