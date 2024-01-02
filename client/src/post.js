@@ -1,7 +1,8 @@
+import Post02 from '../../client/src/assets/post02.jpeg'
 export default function Post(){
     return(<div className="post">
     <div className="image">
-    <img src="https://hips.hearstapps.com/hmg-prod/images/vibrant-pink-and-white-summer-flowering-cosmos-royalty-free-image-1653499726.jpg" alt="ghjg"/>
+    <img src={Post02} alt="ghjg"/>
   </div>
     <div className="texts">
     <h2>Cultural significance</h2>
